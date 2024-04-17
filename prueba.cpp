@@ -1,8 +1,8 @@
 /*
-Tengo un parqueadero de callej髇 con ocupaci髇 para moto y carro. 
+Tengo un parqueadero de callej贸n con ocupaci贸n para moto y carro. 
 Los cuales se parquean en sistema lifo. Los carros tienen un valor de parqueo de 1000 y las motos de 500, 
-pero al retirarlos cada movimiento adicional de veh韈ulo cuesta 100 para carro y 50 para moto. 
-Calcular el valor delegando en x momento de d韆
+pero al retirarlos cada movimiento adicional de veh铆culo cuesta 100 para carro y 50 para moto. 
+Calcular el valor delegando en x momento de d铆a
 */
 
 #include <iostream>
@@ -232,43 +232,43 @@ void retirar(){
     cout << "Ingrese la placa del carro a retirar del parqueadero: ";
     cin >> placa;
     
-    // Buscar y eliminar en la secci髇 de autos
+    // Buscar y eliminar en la secci贸n de autos
     while (temp_carro != NULL) {
-        if (temp_carro-> == placa) {
+        if (temp_carro->ID==aux->ID) {
             if (prev_carro == NULL) {
-                topauto = temp_auto->sig;
+                aux = temp_carro->sig;
             } else {
-                prev_auto->sig = temp_auto->sig;
+                prev_carro->sig = temp_carro->sig;
             }
-            delete temp_auto;
-            cout << "Veh韈ulo con placa " << placa << " despachado del parqueadero de autos." << endl;
+            delete temp_carro;
+            cout << "Veh铆culo con ID " << aux->ID << " despachado del parqueadero de autos." << endl;
             return;
         }
-        prev_auto = temp_auto;
-        temp_auto = temp_auto->sig;
+        prev_carro = temp_carro;
+        temp_carro = temp_carro->sig;
     }
 
-    Parqueadero4 *temp_moto, *prev_moto;
-    temp_moto = topmoto;
+    moto *temp_moto, *prev_moto;
+    temp_moto = aux2;
     prev_moto = NULL;
 
-    // Buscar y eliminar en la secci髇 de motos
+    // Buscar y eliminar en la secci贸n de motos
     while (temp_moto != NULL) {
-        if (temp_moto->placa == placa) {
+        if (temp_moto->ID == aux2->ID) {
             if (prev_moto == NULL) {
-                topmoto = temp_moto->sig;
+                aux2 = temp_moto->sig2;
             } else {
-                prev_moto->sig = temp_moto->sig;
+                prev_moto->sig2 = temp_moto->sig2;
             }
             delete temp_moto;
-            cout << "Veh韈ulo con placa " << placa << " despachado del parqueadero de motos." << endl;
+            cout << "Veh铆culo con placa " << placa << " despachado del parqueadero de motos." << endl;
             return;
         }
         prev_moto = temp_moto;
-        temp_moto = temp_moto->sig;
+        temp_moto = temp_moto->sig2;
     }
 
-    cout << "El veh韈ulo con placa " << placa << " no se encuentra registrado en el parqueadero." << endl;	
+    cout << "El veh铆culo con placa " << placa << " no se encuentra registrado en el parqueadero." << endl;	
 	}
 	
 	if(opcion==2){
@@ -279,6 +279,5 @@ void retirar(){
 
 }
 
-// Funci髇 para calcular y mostrar el total devengado
+// Funci贸n para calcular y mostrar el total devengado
 	
-
