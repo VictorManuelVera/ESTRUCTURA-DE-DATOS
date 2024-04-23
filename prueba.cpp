@@ -212,21 +212,23 @@ void retirar(){
 	int id;
 	int opcion;
 	 
+	 carro *tempC = cab;
+	 moto *tempM = cab2;
+
+ 
     if(cab==NULL && cab2==NULL){
     	
     	cout<<"\nNo hay vehiculos en el parqueadero\n";
     }
-		else{
+		else if(cab!=NULL || cab2!=NULL){
 		
 	cout<<"\n\tMENU\n\n";
 	cout<<"\t1. Carro";
 	cout<<"\t2. Moto\n";
 	cout<<"\nDigite la opcion que desea realizar:";
 	cin>>opcion;
-			
-	}
-	
-	if(opcion==1){
+		
+		if(opcion==1){
 	
 	 
     cout << "Ingrese el ID del carro a retirar del parqueadero: ";
@@ -237,18 +239,14 @@ void retirar(){
 	if(aux->ID==id){
 	
 	
-		
-	}
-	
-	if(opcion==1 && aux->ID!=id){
-		
-	cout << "\nEl carro con ID " << id << " no se encuentra registrado en el parqueadero." << endl;	
-	
-	}
 	
 	}
 	
 
+	
+	}
+	
+	
 	
 	if(opcion==2){
 		
@@ -256,18 +254,41 @@ void retirar(){
     cin >> id;
     
 	    // Buscar y eliminar en la sección de motos
-
+	    
+	if(aux2->ID==id){
+	
+	
+		
+	}
     
     
-	if(opcion==2 && aux2->ID!=id){
-   	
-   cout << "La moto con ID " << id << " no se encuentra registrado en el parqueadero." << endl;	
-   	
-   }
+	
    	
 	}
-   
-  
+	
+
+   	
+	}
+	
+
+       while (temp != NULL && temp->tipo!= tipo) {
+        temp = temp->sig;
+        if (temp->tipo == (tipo == 1))
+        {
+            valor_vehiculo += 100;
+        }
+        if (temp->tipo == (tipo == 2))
+        {
+            valor_vehiculo += 50;
+        }
+        valor_temp += valor + valor_vehiculo;
+    }
+    if (cab == NULL || temp == NULL) {
+        printf("No se encontró ningún vehículo del tipo deseado en el parqueadero\n");
+        return 0;
+    }
+    free(temp);
+
 
 }
 
