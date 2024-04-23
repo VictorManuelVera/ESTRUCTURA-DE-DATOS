@@ -171,7 +171,7 @@ void calcular(){
         temporalMoto = temporalMoto->sig2;
     }
     
-    valorTotal = totalCarros * 1000 + totalMotos * 500; // Calcular el valor base
+    valorTotal = totalCarros * 1000 + totalMotos * 500; 
     
     
     cout << "\nHay un total de " << totalCarros << " carros en el parqueadero.";
@@ -251,13 +251,21 @@ void retirar(){
 		
 	delete tempC;
 	
-	cout<<"El carro con ID "<<id<<" ha sido retirado del parqueadero con exito";	
+	cout<<"\nEl carro con ID "<<id<<" ha sido retirado del parqueadero con exito\n";	
 	
 	}
+		 else	if(tempC->ID!=id){
+			
+		cout<<"\nEl ID ingresado no concuerda con ninguno de los carros de nuestro parqueadero\n";	
+			
+		}
 		prevC = tempC;
 		tempC = tempC->sig;
 		
+	
+		
 			}
+	
 	
 	}
 	
@@ -287,14 +295,19 @@ void retirar(){
 		
 	delete tempM;
 	
-	cout<<"La moto con ID "<<id<<" ha sido retirado del parqueadero con exito";	
+	cout<<"\nLa moto con ID "<<id<<" ha sido retirado del parqueadero con exito\n";	
 	
-	}
+	} else	if(tempM->ID!=id){
+			
+		cout<<"\nEl ID ingresado no concuerda con ninguna de las motos de nuestro parqueadero\n";	
+			
+		}
 		prevM = tempM;
 		tempM = tempM->sig2;
 		
 			}
-		
+			
+	
 	}
     
     
@@ -302,9 +315,12 @@ void retirar(){
    	
 	}
 	
+	
 
 }
 
+// Función para calcular y mostrar el valor total del parqueadero
+	
+	
 
-// Función para calcular y mostrar el total devengado
 	
