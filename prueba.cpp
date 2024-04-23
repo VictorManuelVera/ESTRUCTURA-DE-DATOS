@@ -252,7 +252,12 @@ void retirar(){
     temp_moto = aux2;
     prev_moto = NULL;
 
-    // Buscar y eliminar en la sección de motos
+
+	}
+	
+	if(opcion==2){
+		
+	    // Buscar y eliminar en la sección de motos
     while (temp_moto != NULL) {
         if (temp_moto->ID == aux2->ID) {
             if (prev_moto == NULL) {
@@ -261,19 +266,14 @@ void retirar(){
                 prev_moto->sig2 = temp_moto->sig2;
             }
             delete temp_moto;
-            cout << "Vehículo con placa " << placa << " despachado del parqueadero de motos." << endl;
+            cout << "La moto con placa " << placa << " despachado del parqueadero de motos." << endl;
             return;
         }
         prev_moto = temp_moto;
         temp_moto = temp_moto->sig2;
     }
 
-    cout << "El vehículo con placa " << placa << " no se encuentra registrado en el parqueadero." << endl;	
-	}
-	
-	if(opcion==2){
-		
-		
+    cout << "La moto con placa " << placa << " no se encuentra registrado en el parqueadero." << endl;		
 	}
    
 
