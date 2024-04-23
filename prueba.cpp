@@ -35,8 +35,7 @@ moto *cab2, *aux2;
 void registrar();
 void calcular();
 void mostrar(); 
-void retirar();
-
+void retirar(); 
 
 int main(){
 	
@@ -254,11 +253,7 @@ void retirar(){
 	cout<<"\nEl carro con ID "<<id<<" ha sido retirado del parqueadero con exito\n";	
 	
 	}
-		 else	if(tempC->ID!=id){
-			
-		cout<<"\nEl ID ingresado no concuerda con ninguno de los carros de nuestro parqueadero\n";	
-			
-		}
+	
 		prevC = tempC;
 		tempC = tempC->sig;
 		
@@ -297,11 +292,7 @@ void retirar(){
 	
 	cout<<"\nLa moto con ID "<<id<<" ha sido retirado del parqueadero con exito\n";	
 	
-	} else	if(tempM->ID!=id){
-			
-		cout<<"\nEl ID ingresado no concuerda con ninguna de las motos de nuestro parqueadero\n";	
-			
-		}
+	} 
 		prevM = tempM;
 		tempM = tempM->sig2;
 		
@@ -315,12 +306,28 @@ void retirar(){
    	
 	}
 	
-	
+	cout<<"\n...Actualizando el valor del parqueadero...\n";
 
 }
 
-// Función para calcular y mostrar el valor total del parqueadero
-	
+// Función para calcular y mostrar el total devengado
+
+int devengadoAuto = 0;
+int devengadoMoto = 0;
+int eliminarAuto = 0;
+int eliminarMoto = 0;
+int valorAuto = 0;
+int valorMoto = 0;
+int totalDevengado = 0;
+
+void totalParquear() {
+    devengadoAuto = valorAuto - eliminarAuto;
+    devengadoMoto = valorMoto - eliminarMoto;
+    cout << "\nDinero recolectado del parqueadero de autos: $" << devengadoAuto << endl;
+    cout << "\nDinero recolectado del parqueadero de motos: $" << devengadoMoto << endl;
+    totalDevengado = devengadoAuto + devengadoMoto;
+    cout << "\nEl total devengado es: $" << totalDevengado << endl;
+}	
 	
 
 	
