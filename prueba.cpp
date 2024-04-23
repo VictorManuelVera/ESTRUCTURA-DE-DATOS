@@ -90,7 +90,7 @@ void registrar(){
     cout<<"\n\tMENU\n";
     cout<<"\t\n1. Carro";
     cout<<"\t\n2. Moto\n";
-    cout<<"\nDigite el tipo de vehiculo que desea registrar:";
+    cout<<"\nDigite el tipo de vehiculo que desea registrar: ";
     cin>>opc;
     
     
@@ -208,76 +208,69 @@ void mostrar(){
 
 void retirar(){
 	
-	int placa;
+	 
+	int id;
 	int opcion;
+	 
+    if(cab==NULL && cab2==NULL){
+    	
+    	cout<<"\nNo hay vehiculos en el parqueadero\n";
+    }
+		else{
+		
 	cout<<"\n\tMENU\n\n";
 	cout<<"\t1. Carro";
 	cout<<"\t2. Moto\n";
 	cout<<"\nDigite la opcion que desea realizar:";
 	cin>>opcion;
+			
+	}
 	
-	
-    carro *temp_carro, *prev_carro;
-    moto *temp_moto, *prev_moto;
-    
-    temp_carro= aux ;
-    prev_carro = NULL;
-    
-    temp_moto = aux2;
-    prev_moto = NULL;
-    
 	if(opcion==1){
 	
 	 
-    cout << "Ingrese la placa del carro a retirar del parqueadero: ";
-    cin >> placa;
+    cout << "Ingrese el ID del carro a retirar del parqueadero: ";
+    cin >> id;
     
     // Buscar y eliminar en la sección de autos
-    while (temp_carro != NULL) {
-        if (temp_carro->ID==aux->ID) {
-            if (prev_carro == NULL) {
-                aux = temp_carro->sig;
-            } else {
-                prev_carro->sig = temp_carro->sig;
-            }
-            delete temp_carro;
-            cout << "Vehículo con ID " << aux->ID << " despachado del parqueadero de autos." << endl;
-            return;
-        }
-        prev_carro = temp_carro;
-        temp_carro = temp_carro->sig;
-    }
-
-    moto *temp_moto, *prev_moto;
-    temp_moto = aux2;
-    prev_moto = NULL;
-
-
+	
+	if(aux->ID==id){
+	
+	
+		
 	}
+	
+	if(opcion==1 && aux->ID!=id){
+		
+	cout << "\nEl carro con ID " << id << " no se encuentra registrado en el parqueadero." << endl;	
+	
+	}
+	
+	}
+	
+
 	
 	if(opcion==2){
 		
+	cout << "Ingrese el ID de la moto a retirar del parqueadero: ";
+    cin >> id;
+    
 	    // Buscar y eliminar en la sección de motos
-    while (temp_moto != NULL) {
-        if (temp_moto->ID == aux2->ID) {
-            if (prev_moto == NULL) {
-                aux2 = temp_moto->sig2;
-            } else {
-                prev_moto->sig2 = temp_moto->sig2;
-            }
-            delete temp_moto;
-            cout << "La moto con placa " << placa << " despachado del parqueadero de motos." << endl;
-            return;
-        }
-        prev_moto = temp_moto;
-        temp_moto = temp_moto->sig2;
-    }
 
-    cout << "La moto con placa " << placa << " no se encuentra registrado en el parqueadero." << endl;		
+    
+    
+	if(opcion==2 && aux2->ID!=id){
+   	
+   cout << "La moto con ID " << id << " no se encuentra registrado en el parqueadero." << endl;	
+   	
+   }
+   	
 	}
    
+  
 
 }
+
 
 // Función para calcular y mostrar el total devengado
 	
