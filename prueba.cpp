@@ -37,6 +37,7 @@ void calcular();
 void mostrar(); 
 void retirar();
 
+
 int main(){
 	
 	int opc=0;
@@ -208,12 +209,10 @@ void mostrar(){
 
 void retirar(){
 	
-	 
+	carro *tempC = cab, *prevC = NULL; moto *tempM = cab2, *prevM = NULL;
+ 
 	int id;
 	int opcion;
-	 
-	 carro *tempC = cab;
-	 moto *tempM = cab2;
 
  
     if(cab==NULL && cab2==NULL){
@@ -236,13 +235,29 @@ void retirar(){
     
     // Buscar y eliminar en la sección de autos
 	
-	if(aux->ID==id){
+	while(tempC!=NULL){
 	
+	if(tempC->ID==id){
+		
+	if(prevC==NULL){
+		
+		cab = tempC->sig;	
+		
+	}else{
+		
+		prevC = tempC->sig;
+		
+		}
+		
+	delete tempC;
 	
+	cout<<"El carro con ID "<<id<<" ha sido retirado del parqueadero con exito";	
 	
 	}
-	
-
+		prevC = tempC;
+		tempC = tempC->sig;
+		
+			}
 	
 	}
 	
@@ -255,9 +270,30 @@ void retirar(){
     
 	    // Buscar y eliminar en la sección de motos
 	    
-	if(aux2->ID==id){
 	
+		while(tempM!=NULL){
 	
+	if(tempM->ID==id){
+		
+	if(prevM==NULL){
+		
+		cab2 = tempM->sig2;	
+		
+	}else{
+		
+		prevM = tempM->sig2;
+		
+		}
+		
+	delete tempM;
+	
+	cout<<"La moto con ID "<<id<<" ha sido retirado del parqueadero con exito";	
+	
+	}
+		prevM = tempM;
+		tempM = tempM->sig2;
+		
+			}
 		
 	}
     
@@ -266,29 +302,6 @@ void retirar(){
    	
 	}
 	
-
-   	
-	}
-	
-
-       while (temp != NULL && temp->tipo!= tipo) {
-        temp = temp->sig;
-        if (temp->tipo == (tipo == 1))
-        {
-            valor_vehiculo += 100;
-        }
-        if (temp->tipo == (tipo == 2))
-        {
-            valor_vehiculo += 50;
-        }
-        valor_temp += valor + valor_vehiculo;
-    }
-    if (cab == NULL || temp == NULL) {
-        printf("No se encontró ningún vehículo del tipo deseado en el parqueadero\n");
-        return 0;
-    }
-    free(temp);
-
 
 }
 
