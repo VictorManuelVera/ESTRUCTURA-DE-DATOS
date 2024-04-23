@@ -210,10 +210,10 @@ void retirar(){
 	
 	int placa;
 	int opcion;
-	cout<<"\n\tMENU\n";
+	cout<<"\n\tMENU\n\n";
 	cout<<"\t1. Carro";
-	cout<<"2. Moto\n";
-	cout<<"Digite la opcion que desea realizar:";
+	cout<<"\t2. Moto\n";
+	cout<<"\nDigite la opcion que desea realizar:";
 	cin>>opcion;
 	
 	
