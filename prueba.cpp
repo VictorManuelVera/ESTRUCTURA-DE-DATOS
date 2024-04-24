@@ -205,129 +205,73 @@ void mostrar(){
 	}
 }
 
+void retirar() {
+    int id;
+    int opcion;
 
-void retirar(){
-	
-	carro *tempC = cab, *prevC = NULL; moto *tempM = cab2, *prevM = NULL;
- 
-	int id;
-	int opcion;
+    if (cab == NULL && cab2 == NULL) {
+        cout << "\nNo hay vehículos en el parqueadero\n";
+    } else {
+        cout << "\n\tMENU\n\n";
+        cout << "\t1. Carro";
+        cout << "\t2. Moto\n";
+        cout << "\nDigite la opción que desea realizar:";
+        cin >> opcion;
 
- 
-    if(cab==NULL && cab2==NULL){
-    	
-    	cout<<"\nNo hay vehiculos en el parqueadero\n";
+        if (opcion == 1) {
+            cout << "Ingrese el ID del carro a retirar del parqueadero: ";
+            cin >> id;
+
+            carro *tempC = cab;
+            carro *prevC = NULL;
+
+            while (tempC != NULL) {
+                if (tempC->ID == id) {
+                    if (prevC == NULL) {
+                        cab = tempC->sig;
+                    } else {
+                        prevC->sig = tempC->sig;
+                    }
+                    delete tempC;
+                    cout << "\nEl carro con ID " << id << " ha sido retirado del parqueadero con éxito\n";
+                    return;
+                }
+                prevC = tempC;
+                tempC = tempC->sig;
+            }
+            cout << "\nEl carro con ID " << id << " no se encuentra en el parqueadero.\n";
+        }
+
+        if (opcion == 2) {
+            cout << "Ingrese el ID de la moto a retirar del parqueadero: ";
+            cin >> id;
+
+            moto *tempM = cab2;
+            moto *prevM = NULL;
+
+            while (tempM != NULL) {
+                if (tempM->ID == id) {
+                    if (prevM == NULL) {
+                        cab2 = tempM->sig2;
+                    } else {
+                        prevM->sig2 = tempM->sig2;
+                    }
+                    delete tempM;
+                    cout << "\nLa moto con ID " << id << " ha sido retirada del parqueadero con éxito\n";
+                    return;
+                }
+                prevM = tempM;
+                tempM = tempM->sig2;
+            }
+            cout << "\nLa moto con ID " << id << " no se encuentra en el parqueadero.\n";
+        }
     }
-		else if(cab!=NULL || cab2!=NULL){
-		
-	cout<<"\n\tMENU\n\n";
-	cout<<"\t1. Carro";
-	cout<<"\t2. Moto\n";
-	cout<<"\nDigite la opcion que desea realizar:";
-	cin>>opcion;
-		
-		if(opcion==1){
-	
-	 
-    cout << "Ingrese el ID del carro a retirar del parqueadero: ";
-    cin >> id;
-    
-    // Buscar y eliminar en la sección de autos
-	
-	while(tempC!=NULL){
-	
-	if(tempC->ID==id){
-		
-	if(prevC==NULL){
-		
-		cab = tempC->sig;	
-		
-	}else{
-		
-		prevC = tempC->sig;
-		
-		}
-		
-	delete tempC;
-	
-	cout<<"\nEl carro con ID "<<id<<" ha sido retirado del parqueadero con exito\n";	
-	
-	}
-	
-		prevC = tempC;
-		tempC = tempC->sig;
-		
-	
-		
-			}
-	
-	
-	}
-	
-	
-	
-	if(opcion==2){
-		
-	cout << "Ingrese el ID de la moto a retirar del parqueadero: ";
-    cin >> id;
-    
-	    // Buscar y eliminar en la sección de motos
-	    
-	
-		while(tempM!=NULL){
-	
-	if(tempM->ID==id){
-		
-	if(prevM==NULL){
-		
-		cab2 = tempM->sig2;	
-		
-	}else{
-		
-		prevM = tempM->sig2;
-		
-		}
-		
-	delete tempM;
-	
-	cout<<"\nLa moto con ID "<<id<<" ha sido retirado del parqueadero con exito\n";	
-	
-	} 
-		prevM = tempM;
-		tempM = tempM->sig2;
-		
-			}
-			
-	
-	}
-    
-    
-	
-   	
-	}
-	
-	cout<<"\n...Actualizando el valor del parqueadero...\n";
 
+    cout << "\n...Actualizando el valor del parqueadero...\n";
 }
 
-// Función para calcular y mostrar el total devengado
 
-int devengadoAuto = 0;
-int devengadoMoto = 0;
-int eliminarAuto = 0;
-int eliminarMoto = 0;
-int valorAuto = 0;
-int valorMoto = 0;
-int totalDevengado = 0;
 
-void totalParquear() {
-    devengadoAuto = valorAuto - eliminarAuto;
-    devengadoMoto = valorMoto - eliminarMoto;
-    cout << "\nDinero recolectado del parqueadero de autos: $" << devengadoAuto << endl;
-    cout << "\nDinero recolectado del parqueadero de motos: $" << devengadoMoto << endl;
-    totalDevengado = devengadoAuto + devengadoMoto;
-    cout << "\nEl total devengado es: $" << totalDevengado << endl;
-}	
-	
+
 
 	
