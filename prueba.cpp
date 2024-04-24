@@ -182,6 +182,21 @@ void calcular(){
 
 void mostrar(){
 	
+	int totalCarros = 0;
+    int totalMotos = 0;
+    
+    carro *temporalCarro = cab;
+    while(temporalCarro != NULL){
+        totalCarros++;
+       temporalCarro = temporalCarro->sig;
+    }
+    
+    moto *temporalMoto = cab2;
+    while(temporalMoto != NULL){
+        totalMotos++;
+        temporalMoto = temporalMoto->sig2;
+    }
+    
 	cout<<"\nMostrando los carros que hay en el parquadero:\n";
 	
 	aux=cab;
@@ -203,6 +218,10 @@ void mostrar(){
 	aux2=aux2->sig2;
 		
 	}
+	
+	cout<<"\nHay un total de "<<totalCarros<<" carros en el parquadero";
+	cout<<"\nHay un total de "<<totalMotos<<" motos en el parquadero\n";
+
 }
 
 void retirar() {
