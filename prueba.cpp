@@ -188,7 +188,7 @@ void mostrar(){
 	while(aux!=NULL){
 	
 	cout<<"\nPlaca de carro: "<<aux->placa;
-	cout<<"\nID de carro: "<<aux->ID;
+	cout<<"\nID de carro: "<<aux->ID<<"\n";
 	aux=aux->sig;
 		
 	}
@@ -215,7 +215,7 @@ void retirar() {
         cout << "\n\tMENU\n\n";
         cout << "\t1. Carro";
         cout << "\t2. Moto\n";
-        cout << "\nDigite la opción que desea realizar:";
+        cout << "\nDigite la opcion que desea realizar:";
         cin >> opcion;
 
         if (opcion == 1) {
@@ -233,8 +233,8 @@ void retirar() {
                         prevC->sig = tempC->sig;
                     }
                     delete tempC;
-                    cout << "\nEl carro con ID " << id << " ha sido retirado del parqueadero con éxito\n";
-                    return;
+
+                    
                 }
                 prevC = tempC;
                 tempC = tempC->sig;
@@ -257,8 +257,8 @@ void retirar() {
                         prevM->sig2 = tempM->sig2;
                     }
                     delete tempM;
-                    cout << "\nLa moto con ID " << id << " ha sido retirada del parqueadero con éxito\n";
-                    return;
+
+                    
                 }
                 prevM = tempM;
                 tempM = tempM->sig2;
@@ -268,8 +268,8 @@ void retirar() {
     }
 
     cout << "\n...Actualizando el valor del parqueadero...\n";
+    
 }
-
 
 
 
