@@ -57,25 +57,26 @@ void eliminar();
 */
 
 //hay un error al implementar esta funcion en registrar
+
 void posicionar(){
-	
-	if(aux->codigo<aux2->codigo){
-		if(aux2->izq!=NULL){
-		aux2=aux2->izq;
-		posicionar();	
-		}
-		else{
-			aux2->izq = aux;
-		}
-	}else if(aux->codigo>aux2->codigo){
-		if(aux2->der!=NULL){
-		aux2=aux2->der;
-		posicionar();
-	}
-	else{
-			aux2->der = aux;
-		}
+    if(aux->codigo < aux2->codigo){
+        if(aux2->izq != NULL){
+            aux2 = aux2->izq;
+            posicionar();	
+        }
+        else{
+            aux2->izq = aux;
+        }
+    } else if(aux->codigo > aux2->codigo){
+        if(aux2->der != NULL){
+            aux2 = aux2->der;
+            posicionar();
+        } else{
+            aux2->der = aux;
+        }
+    }
 }
+
 
 void registrar(){
 
