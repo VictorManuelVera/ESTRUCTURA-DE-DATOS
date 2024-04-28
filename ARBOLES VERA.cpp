@@ -48,21 +48,24 @@ struct arbol{
 
 	arbol *raiz,*raizF,*aux, *aux2;
 /*
-void registro();{
+void registrar(){
 posicionar();
 }
 
-void mostrar();{
+void mostrar(){
 void inorden(){}
 void preorden(){}
 void postorden(){}
 }
+
 void eliminar();
 */
 
 //hay un error al implementar esta funcion en registrar
 
 void posicionar(){
+
+//codigo
     if(aux->codigo < aux2->codigo){
         if(aux2->izq != NULL){
             aux2 = aux2->izq;
@@ -72,6 +75,99 @@ void posicionar(){
             aux2->izq = aux;
         }
     } else if(aux->codigo > aux2->codigo){
+        if(aux2->der != NULL){
+            aux2 = aux2->der;
+            posicionar();
+        } else{
+            aux2->der = aux;
+        }
+    }
+
+//nombre    
+        if(aux->nombre < aux2->nombre){
+        if(aux2->izq != NULL){
+            aux2 = aux2->izq;
+            posicionar();	
+        }
+        else{
+            aux2->izq = aux;
+        }
+    } else if(aux->nombre > aux2->nombre){
+        if(aux2->der != NULL){
+            aux2 = aux2->der;
+            posicionar();
+        } else{
+            aux2->der = aux;
+        }
+    }
+    
+//apellido
+
+		if(aux->apellido < aux2->apellido){
+        if(aux2->izq != NULL){
+            aux2 = aux2->izq;
+            posicionar();	
+        }
+        else{
+            aux2->izq = aux;
+        }
+    } else if(aux->apellido > aux2->apellido){
+        if(aux2->der != NULL){
+            aux2 = aux2->der;
+            posicionar();
+        } else{
+            aux2->der = aux;
+        }
+    }
+    
+//dia
+
+		if(aux->dia < aux2->dia){
+        if(aux2->izq != NULL){
+            aux2 = aux2->izq;
+            posicionar();	
+        }
+        else{
+            aux2->izq = aux;
+        }
+    } else if(aux->dia > aux2->dia){
+        if(aux2->der != NULL){
+            aux2 = aux2->der;
+            posicionar();
+        } else{
+            aux2->der = aux;
+        }
+    }
+
+//mes
+		if(aux->mes < aux2->mes){
+        if(aux2->izq != NULL){
+            aux2 = aux2->izq;
+            posicionar();	
+        }
+        else{
+            aux2->izq = aux;
+        }
+    } else if(aux->mes > aux2->mes){
+        if(aux2->der != NULL){
+            aux2 = aux2->der;
+            posicionar();
+        } else{
+            aux2->der = aux;
+        }
+    }
+    
+//year
+
+		if(aux->year < aux2->year){
+        if(aux2->izq != NULL){
+            aux2 = aux2->izq;
+            posicionar();	
+        }
+        else{
+            aux2->izq = aux;
+        }
+    } else if(aux->year > aux2->year){
         if(aux2->der != NULL){
             aux2 = aux2->der;
             posicionar();
@@ -157,10 +253,10 @@ int main(){
 	do{
 	
 	cout<<"\n\tMENU\n";
-	cout<<"\n\t1. Registrar\n";
-	cout<<"\t2. Mostrar\n";
-	cout<<"\t3. Eliminar\n";
-	cout<<"\t4. Salir\n";
+	cout<<"\n\t1) Registrar\n";
+	cout<<"\t2) Mostrar\n";
+	cout<<"\t3) Eliminar\n";
+	cout<<"\t4) Salir\n";
 	cout<<"\nDigite la opcion que desea realizar: ";
 	cin>>opc;
 		
