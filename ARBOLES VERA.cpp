@@ -52,7 +52,11 @@ void registro();{
 posicionar();
 }
 
-void mostrar();
+void mostrar();{
+void inorden(){}
+void preorden(){}
+void postorden(){}
+}
 void eliminar();
 */
 
@@ -118,10 +122,24 @@ else if(raiz!=NULL){
 
 }
 
+void inorden(){
+
+}
+
+void preorden(){
+
+}
+
+void postorden(){
+
+}
+
 void mostrar(){
 
-	
-	
+inorden();
+preorden();
+postorden();
+
 }
 
 void eliminar(){
