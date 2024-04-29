@@ -218,23 +218,59 @@ else if(raiz!=NULL){
 
 }
 
-void inorden(){
+void preorden(arbol *aux3){
 
+cout<<"\n\t...IMPRIMIENDO LOS DATOS DEL ESTUDIANTE EN *PREORDEN*...\n";	
+cout<<"\nEl codigo del estudiante es: "<<aux3->codigo<<endl;
+cout<<"El nombre del estudiante es: "<<aux3->nombre<<" "<<aux3->apellido<<endl;
+cout<<"La fecha de nacimiento del estudiante es: "<<aux3->dia<<"/"<<aux3->mes<<"/"<<aux3->year<<endl;
+
+	if(aux3->izq!=NULL){	
+		preorden(aux3->izq);	
+	}
+	if(aux3->der!=NULL){
+		preorden(aux3->der);
+	}
 }
 
-void preorden(){
 
+void inorden(arbol *aux3){
+		
+cout<<"\n\t...IMPRIMIENDO LOS DATOS DEL ESTUDIANTE EN *INORDEN*...\n";	
+	if(aux3->izq!=NULL){	
+		preorden(aux3->izq);	
+	}
+cout<<"\nEl codigo del estudiante es: "<<aux3->codigo<<endl;
+cout<<"El nombre del estudiante es: "<<aux3->nombre<<" "<<aux3->apellido<<endl;
+cout<<"La fecha de nacimiento del estudiante es: "<<aux3->dia<<"/"<<aux3->mes<<"/"<<aux3->year<<endl;
+
+	if(aux3->der!=NULL){
+		preorden(aux3->der);
+	}
 }
 
-void postorden(){
+void postorden(arbol *aux3){
 
+cout<<"\n\t...IMPRIMIENDO LOS DATOS DEL ESTUDIANTE EN *POSTORDEN*...\n";
+	if(aux3->izq!=NULL){	
+		preorden(aux3->izq);	
+	}
+
+	if(aux3->der!=NULL){
+		preorden(aux3->der);
+	}
+
+cout<<"\nEl codigo del estudiante es: "<<aux3->codigo<<endl;
+cout<<"El nombre del estudiante es: "<<aux3->nombre<<" "<<aux3->apellido<<endl;
+cout<<"La fecha de nacimiento del estudiante es: "<<aux3->dia<<"/"<<aux3->mes<<"/"<<aux3->year<<endl;	
+		
 }
 
 void mostrar(){
 
-inorden();
-preorden();
-postorden();
+preorden(raiz);
+inorden(raiz);
+postorden(raiz);
 
 }
 
