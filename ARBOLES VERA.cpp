@@ -52,16 +52,17 @@ void registrar(){
 posicionar();
 }
 
-void mostrar(){
+
 void inorden(){}
 void preorden(){}
 void postorden(){}
-}
+void buscar(){}
+void organizarfecha(){}
+void organizarcodigo(){}
 
 void eliminar();
 */
 
-//hay un error al implementar esta funcion en registrar
 
 void posicionar(){
 
@@ -220,7 +221,7 @@ else if(raiz!=NULL){
 
 void preorden(arbol *aux3){
 
-cout<<"\n\t...IMPRIMIENDO LOS DATOS DEL ESTUDIANTE EN *PREORDEN*...\n";	
+	
 cout<<"\nEl codigo del estudiante es: "<<aux3->codigo<<endl;
 cout<<"El nombre del estudiante es: "<<aux3->nombre<<" "<<aux3->apellido<<endl;
 cout<<"La fecha de nacimiento del estudiante es: "<<aux3->dia<<"/"<<aux3->mes<<"/"<<aux3->year<<endl;
@@ -236,7 +237,7 @@ cout<<"La fecha de nacimiento del estudiante es: "<<aux3->dia<<"/"<<aux3->mes<<"
 
 void inorden(arbol *aux3){
 		
-cout<<"\n\t...IMPRIMIENDO LOS DATOS DEL ESTUDIANTE EN *INORDEN*...\n";	
+	
 	if(aux3->izq!=NULL){	
 		preorden(aux3->izq);	
 	}
@@ -251,7 +252,7 @@ cout<<"La fecha de nacimiento del estudiante es: "<<aux3->dia<<"/"<<aux3->mes<<"
 
 void postorden(arbol *aux3){
 
-cout<<"\n\t...IMPRIMIENDO LOS DATOS DEL ESTUDIANTE EN *POSTORDEN*...\n";
+
 	if(aux3->izq!=NULL){	
 		preorden(aux3->izq);	
 	}
@@ -266,18 +267,24 @@ cout<<"La fecha de nacimiento del estudiante es: "<<aux3->dia<<"/"<<aux3->mes<<"
 		
 }
 
-void mostrar(){
 
-preorden(raiz);
-inorden(raiz);
-postorden(raiz);
-
-}
 
 void eliminar(){
 
 
 	
+}
+
+void buscar(){
+
+}
+
+void organizarfecha(){
+
+}
+
+void organizarcodigo(){
+
 }
 
 int main(){
@@ -290,9 +297,14 @@ int main(){
 	
 	cout<<"\n\tMENU\n";
 	cout<<"\n\t1) Registrar\n";
-	cout<<"\t2) Mostrar\n";
-	cout<<"\t3) Eliminar\n";
-	cout<<"\t4) Salir\n";
+	cout<<"\t2) Mostrar Preorden\n";
+	cout<<"\t3) Mostrar Inorden\n";
+	cout<<"\t4) Mostrar Postorden\n";
+	cout<<"\t5) Buscar\n";
+	cout<<"\t6) Organizar por fecha\n";
+	cout<<"\t7) Organizar por codigo\n";
+	cout<<"\t8) Eliminar\n";
+	cout<<"\t9) Salir\n";
 	cout<<"\nDigite la opcion que desea realizar: ";
 	cin>>opc;
 		
@@ -303,14 +315,38 @@ int main(){
 			break;
 			
 		case 2:
-			mostrar();
+			cout<<"\n\t...IMPRIMIENDO LOS DATOS DEL ESTUDIANTE EN PREORDEN...\n";
+			preorden(raiz);
 			break;
 			
 		case 3:
-			eliminar();
+			cout<<"\n\t...IMPRIMIENDO LOS DATOS DEL ESTUDIANTE EN INORDEN...\n";
+			inorden(raiz);
 			break;
 			
 		case 4:
+			cout<<"\n\t...IMPRIMIENDO LOS DATOS DEL ESTUDIANTE EN POSTORDEN...\n";
+			postorden(raiz);
+			break;
+			
+		case 5:
+			buscar();
+			break;
+			
+		case 6:
+			organizarfecha();
+			break;
+			
+		case 7:
+			organizarcodigo();
+			break;
+			
+		case 8:
+			eliminar();
+			break;
+			
+			
+			case 9:
 			cout<<"\nGracias por usar nuestro programa... Saliendo\n";	
 				cout<<"...finalized...";
 			break;
@@ -320,7 +356,7 @@ int main(){
 			break;
 	}
 		
-	}while(opc!=4);
+	}while(opc!=9);
 	
 	getch();
 	return 0;
