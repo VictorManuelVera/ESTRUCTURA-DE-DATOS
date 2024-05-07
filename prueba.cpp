@@ -32,6 +32,10 @@ moto *sig2;
 
 moto *cab2, *aux2;
 
+int auxiliarC = 0, auxiliarM = 0, valorC = 0, valorM = 0;
+int costoAdicional = 0, movimientosAdicionales = 0;
+
+
 void registrar();
 void calcular();
 void mostrar(); 
@@ -102,7 +106,9 @@ void registrar(){
    	cout<<"Digite el ID del carro: ";
    	cin>>aux->ID;
    	
-   	
+   	auxiliarC = 1000;
+    valorC += auxiliarC;
+    
    	if(cab==NULL){
    		
    		aux->cantidad=1;
@@ -132,7 +138,9 @@ void registrar(){
    	cout<<"Digite el ID de la moto: ";
    	cin>>aux2->ID;
    	
-   	
+   	auxiliarM = 1000;
+    valorM += auxiliarM;
+    
    	if(cab2==NULL){
    		
    		cab2=aux2;
@@ -153,15 +161,14 @@ void registrar(){
 }
 
 void calcular(){
-
-	int totalCarros = 0;
+    int totalCarros = 0;
     int totalMotos = 0;
     int valorTotal = 0;
     
     carro *temporalCarro = cab;
     while(temporalCarro != NULL){
         totalCarros++;
-       temporalCarro = temporalCarro->sig;
+        temporalCarro = temporalCarro->sig;
     }
     
     moto *temporalMoto = cab2;
@@ -170,14 +177,12 @@ void calcular(){
         temporalMoto = temporalMoto->sig2;
     }
     
-    valorTotal = totalCarros * 1000 + totalMotos * 500; 
-    
+    valorTotal = valorC + valorM + costoAdicional; 
     
     cout << "\nHay un total de " << totalCarros << " carros en el parqueadero.";
     cout << "\nHay un total de " << totalMotos << " motos en el parqueadero.";
     cout << "\nEl valor total del parqueadero en este momento es: " << valorTotal << " pesos." << endl;
 
-	
 }
 
 void mostrar(){
@@ -225,6 +230,21 @@ void mostrar(){
 }
 
 void retirar() {
+	
+   	int totalCarros = 0;
+    int totalMotos = 0;
+    
+    carro *temporalCarro = cab;
+    while(temporalCarro != NULL){
+        totalCarros++;
+       temporalCarro = temporalCarro->sig;
+    }
+    
+    moto *temporalMoto = cab2;
+    while(temporalMoto != NULL){
+        totalMotos++;
+        temporalMoto = temporalMoto->sig2;
+    }
     int id;
     int opcion;
 
@@ -253,7 +273,22 @@ void retirar() {
                     }
                     delete tempC;
 
+                    // Incrementar el valor del parqueadero por cada movimiento adicional de carro
+                    movimientosAdicionales;
+                    tempC = cab;
+                    while (tempC != NULL) {
+                        movimientosAdicionales++;
+                        tempC = tempC->sig;
+                    }
+                    costoAdicional = movimientosAdicionales * 100;
+                    cout << "\nEl costo adicional por movimiento de carro es: " << costoAdicional << " pesos\n";
+                    cout << "\n...Actualizando el valor del parqueadero...\n";
+                    cout << "\nHay un total de " << totalCarros-1 << " carros en el parqueadero.";
+    				cout << "\nHay un total de " << totalMotos << " motos en el parqueadero.";
+    				cout << "\nEl valor total del parqueadero en este momento es: " << valorC+valorM+costoAdicional << " pesos." << endl;
+
                     
+                    return;
                 }
                 prevC = tempC;
                 tempC = tempC->sig;
@@ -277,20 +312,29 @@ void retirar() {
                     }
                     delete tempM;
 
+                    // Incrementar el valor del parqueadero por cada movimiento adicional de moto
+                    tempM = cab2;
+                    while (tempM != NULL) {
+                        movimientosAdicionales++;
+                        tempM = tempM->sig2;
+                    }
+                    costoAdicional = movimientosAdicionales * 50;
+                    cout << "\nEl costo adicional por movimiento de moto es: " << costoAdicional << " pesos\n";
+                    cout << "\n...Actualizando el valor del parqueadero...\n";
+                    cout << "\nHay un total de " << totalCarros << " carros en el parqueadero.";
+    				cout << "\nHay un total de " << totalMotos-1 << " motos en el parqueadero.";
+    				cout << "\nEl valor total del parqueadero en este momento es: " << valorC+valorM+costoAdicional << " pesos." << endl;
+                    return;
                     
                 }
                 prevM = tempM;
                 tempM = tempM->sig2;
             }
             cout << "\nLa moto con ID " << id << " no se encuentra en el parqueadero.\n";
+            
         }
-    }
-
-    cout << "\n...Actualizando el valor del parqueadero...\n";
+   	
     
 }
-
-
-
-
-	
+    
+}
