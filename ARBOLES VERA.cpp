@@ -190,30 +190,7 @@ void eliminar() {
    
 }
 
-arbol* eliminarNodo(arbol* raiz, int codigo) {
-    if (raiz == NULL) {
-        return raiz;
-    }
-    if (codigo < raiz->codigo) {
-        raiz->izq = eliminarNodo(raiz->izq, codigo);
-    } else if (codigo > raiz->codigo) {
-        raiz->der = eliminarNodo(raiz->der, codigo);
-    } else {
-        if (raiz->izq == NULL) {
-            arbol* temp = raiz->der;
-            delete raiz;
-            return temp;
-        } else if (raiz->der == NULL) {
-            arbol* temp = raiz->izq;
-            delete raiz;
-            return temp;
-        }
-        arbol* temp = encontrarMinimo(raiz->der);
-        raiz->codigo = temp->codigo;
-        raiz->der = eliminarNodo(raiz->der, temp->codigo);
-    }
-    return raiz;
-}
+
 
 int main() {
     int opc = 0;
