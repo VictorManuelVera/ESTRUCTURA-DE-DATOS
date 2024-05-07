@@ -203,9 +203,60 @@ arbol* encontrarMinimo(arbol* nodo) {
     return nodo;
 }
 
-void eliminar() {
-   
+void eliminarNodo(arbol* &raiz, int codigo) {
+    if (raiz == NULL) {
+        return;
+    }
+
+    // Buscar el nodo a eliminar
+    if (codigo < raiz->codigo) {
+        eliminarNodo(raiz->izq, codigo);
+    } else if (codigo > raiz->codigo) {
+        eliminarNodo(raiz->der, codigo);
+    } else {
+        // Nodo encontrado, proceder con la eliminación
+
+        // Caso 1: El nodo es una hoja
+        if (raiz->izq == NULL && raiz->der == NULL) {
+            delete raiz;
+            raiz = NULL;
+        }
+        // Caso 2: El nodo tiene un hijo
+        else if (raiz->izq == NULL) {
+            arbol* temp = raiz;
+            raiz = raiz->der;
+            delete temp;
+        } else if (raiz->der == NULL) {
+            arbol* temp = raiz;
+            raiz = raiz->izq;
+            delete temp;
+        }
+        // Caso 3: El nodo tiene dos hijos
+        else {
+            arbol* temp = encontrarMinimo(raiz->der);
+            raiz->codigo = temp->codigo;
+            strcpy(raiz->nombre, temp->nombre);
+            strcpy(raiz->apellido, temp->apellido);
+            raiz->dia = temp->dia;
+            raiz->mes = temp->mes;
+            raiz->year = temp->year;
+            eliminarNodo(raiz->der, temp->codigo);
+        }
+    }
 }
+
+//HAY UN PROBLEMA EN LA FUNCION ELIMINAR QUE (NO IDENTIFICA SI EL CODIGO EXISTE O NO, DESPUES DE USARSE UNA VEZ SE CIERRA EL PROGRAMA)
+void eliminar() {
+    int codigoEliminar;
+    cout << "\nDigite el codigo del estudiante que desea eliminar: ";
+    cin >> codigoEliminar;
+
+    eliminarNodo(raiz, codigoEliminar);
+    eliminarNodo(raizF, codigoEliminar);
+
+    cout << "\nEl estudiante con el codigo " << codigoEliminar << " ha sido eliminado del arbol.\n";
+}
+
 
 
 
