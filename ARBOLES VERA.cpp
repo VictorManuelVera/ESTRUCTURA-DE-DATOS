@@ -24,40 +24,57 @@ arbol* nodoC;
 arbol* nodoF;
 
 void organizarcodigo(arbol* &nodo, arbol* &raiz) {
-    if (nodo->codigo < aux2->codigo) {
-        if (aux2->izq != NULL) {
-            aux2 = aux2->izq;
-            organizarcodigo(nodo, raiz);
+    if (raiz == NULL) {
+        raiz = nodo;
+        return;
+    }
+    
+    arbol* aux2 = raiz;
+    while (true) {
+        if (nodo->codigo < aux2->codigo) {
+            if (aux2->izq != NULL) {
+                aux2 = aux2->izq;
+            } else {
+                aux2->izq = nodo;
+                return;
+            }
         } else {
-            aux2->izq = nodo;
-        }
-    } else if (nodo->codigo >= aux2->codigo) {
-        if (aux2->der != NULL) {
-            aux2 = aux2->der;
-            organizarcodigo(nodo, raiz);
-        } else {
-            aux2->der = nodo;
+            if (aux2->der != NULL) {
+                aux2 = aux2->der;
+            } else {
+                aux2->der = nodo;
+                return;
+            }
         }
     }
 }
 
 void organizarfecha(arbol* &nodo, arbol* &raizF) {
-    if (nodo->dia != aux4->dia && nodo->mes != aux4->mes && nodo->year != aux4->year) {
-        if (aux4->izq != NULL) {
-            aux4 = aux4->izq;
-            organizarfecha(nodo, raizF);
+    if (raizF == NULL) {
+        raizF = nodo;
+        return;
+    }
+    
+    arbol* aux4 = raizF;
+    while (true) {
+        if (nodo->year < aux4->year || (nodo->year == aux4->year && nodo->mes < aux4->mes) || (nodo->year == aux4->year && nodo->mes == aux4->mes && nodo->dia < aux4->dia)) {
+            if (aux4->izq != NULL) {
+                aux4 = aux4->izq;
+            } else {
+                aux4->izq = nodo;
+                return;
+            }
         } else {
-            aux4->izq = nodo;
-        }
-    } else if (nodo->dia == aux4->dia && nodo->mes == aux4->mes && nodo->year == aux4->year) {
-        if (aux4->der != NULL) {
-            aux4 = aux4->der;
-            organizarfecha(nodo, raizF);
-        } else {
-            aux4->der = nodo;
+            if (aux4->der != NULL) {
+                aux4 = aux4->der;
+            } else {
+                aux4->der = nodo;
+                return;
+            }
         }
     }
 }
+
 
 void registrar() {
     int codigoIngresado;
