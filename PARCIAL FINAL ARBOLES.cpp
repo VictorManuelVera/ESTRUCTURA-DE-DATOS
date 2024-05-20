@@ -14,8 +14,9 @@ struct nodo{
     //Fecha del viaje 
 	int dia, mes, year;
 	int CapacidadEmbarcacion;
-	nodo *izq, *der;
-	nodo *sig;
+	nodo *izq, *der; //arbol
+	nodo *sig; //FIFO-COLA
+
 };
 
 nodo *raiz, *aux, aux2, *aux3, *aux4;
@@ -68,8 +69,47 @@ void RegistrarViaje(){
 	
 	cout<<"\n\nDigite la capacidad de la embarcacion: ";
 	cin>>CapacidadEmbarcacionIngresado;
+	
+	//Asignando al arbol los datos	
 
+	aux->Preciodelviaje = PreciodelviajeIngresado;
+    strcpy(aux->destino, destinoIngresado.c_str());
+    strcpy(aux->MatriculaEmbarcacion, MatriculaEmbarcacionIngresado.c_str());
+    strcpy(aux->NombreEmbarcacion, NombreEmbarcacionIngresado.c_str());
+    aux->dia = diaIngresado;
+    aux->mes = mesIngresado;
+    aux->year = yearIngresado;
+    aux->CapacidadEmbarcacion = CapacidadEmbarcacionIngresado;
+    aux->izq = NULL;
+    aux->der = NULL;
+    
+     if (raiz == NULL) {
+        raiz = aux;
+    } else {
+        nodo *actual = raiz;
+        nodo *padre;
+        while (true) {
+            padre = actual;
+            if (PreciodelviajeIngresado < actual->Preciodelviaje) {
+                actual = actual->izq;
+                if (actual == NULL) {
+                    padre->izq = aux;
+                    return;
+                }
+            } else {
+                actual = actual->der;
+                if (actual == NULL) {
+                    padre->der = aux;
+                    return;
+                }
+            }
+        }
+    }
+
+    cout << "\nViaje registrado con éxito.\n";
 }
+
+
 
 void BuscarViaje(){
 	
