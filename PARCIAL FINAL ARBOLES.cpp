@@ -45,39 +45,29 @@ void RegistrarViaje(){
 	cout<<"\nDigite el precio del viaje: ";
 	cin>>PreciodelviajeIngresado;
 	
-	cout<<"\n Digite el destino del viaje: ";
+	cout<<"\nDigite el destino del viaje: ";
 	cin.ignore();
     getline(cin, destinoIngresado);
 	
-	cout<<"\n";
-	cin>>;
+	cout<<"\nDigite la matricula de la embarcacion: ";
+    getline(cin, MatriculaEmbarcacionIngresado);
 	
-	cout<<"\n";
-	cin>>;
+	cout<<"\nDigite el nombre de la embarcacion: ";
+    getline(cin, NombreEmbarcacionIngresado);
 	
-	cout<<"\n";
-	cin>>;
+	cout<<"\n\n\tDigite la Fecha del Viaje:\n";
 	
-	cout<<"\n";
-	cin>>;
+	cout<<"\nDigite el dia: ";
+	cin>>diaIngresado;
 	
-	cout<<"\n";
-	cin>>;
+	cout<<"\nDigite el mes: ";
+	cin>>mesIngresado;
 	
-	cout<<"\n";
-	cin>>;
+	cout<<"\nDigite el year: ";
+	cin>>yearIngresado;
 	
-	cout<<"\n";
-	cin>>;
-	
-	cout<<"\n";
-	cin>>;
-	
-	cout<<"\n";
-	cin>>;
-	
-	cout<<"\n";
-	cin>>;
+	cout<<"\n\nDigite la capacidad de la embarcacion: ";
+	cin>>CapacidadEmbarcacionIngresado;
 
 }
 
