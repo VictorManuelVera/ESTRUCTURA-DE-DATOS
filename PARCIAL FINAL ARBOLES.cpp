@@ -39,7 +39,6 @@ void RegistrarViaje(){
 	int CapacidadEmbarcacionIngresado;
 	
 	aux = (struct nodo *)malloc(sizeof (struct nodo));	
-	aux3 = (struct nodo *)malloc(sizeof (struct nodo));	
 
 	cout<<"\n\tBIENVENIDO AL APARTADO DE REGISTRO, POR FAVOR DIGITE LOS DATOS SOLICITADOS"<<endl;
 		
@@ -128,6 +127,8 @@ void EliminarViaje(){
 
 void registrarPasajero(){
 	
+	aux3 = (struct nodo *)malloc(sizeof (struct nodo));	
+
 }
 
 
