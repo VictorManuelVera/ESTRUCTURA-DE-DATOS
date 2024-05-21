@@ -105,7 +105,7 @@ void RegistrarViaje(){
         }
     }
 
-    cout << "\nViaje registrado con éxito.\n";
+    cout << "\nViaje registrado con exito.\n";
 }
 
 
