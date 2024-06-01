@@ -263,7 +263,7 @@ void registrarPasajero(nodo* RegistrarP, const char* identificador, const char* 
                 viaje->ultimoPasajero = nuevoPasajero;
             }
             viaje->numPasajeros++;
-            cout << "\nPasajero registrado con éxito.\n";
+            cout << "\nPasajero registrado con Exito.\n";
         } else {
             cout << "\nNo hay capacidad disponible en este viaje.\n";
         }
@@ -297,7 +297,7 @@ void listarPasajero() {
     
     // Usando un bucle for para recorrer la lista
     for (Pasajero* aux2 = aux; aux2 != NULL; aux2 = aux2->siguiente) {
-        cout << "\nNombre del pasajero" << aux2->nombre << endl;
+        cout << "\nNombre del pasajero: " << aux2->nombre << endl;
 		cout << "Identificador Unico del viaje: " << viaje->identificador << endl;
         cout << "Precio del viaje: " << viaje->Preciodelviaje << endl;
         cout << "Destino del viaje: " << viaje->destino << endl;
