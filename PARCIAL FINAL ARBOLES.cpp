@@ -217,7 +217,7 @@ void BuscarViaje(){
     nodo* viaje = buscar(raiz, identificadorU);
     if (viaje != NULL) {
         cout << "\nViaje encontrado:\n";
-        cout << "Identificador: " << viaje->identificador << endl;
+        cout << "\nIdentificador: " << viaje->identificador << endl;
         cout << "Precio: " << viaje->Preciodelviaje << endl;
         cout << "Destino: " << viaje->destino << endl;
         cout << "Matricula: " << viaje->MatriculaEmbarcacion << endl;
@@ -233,9 +233,10 @@ void BuscarViaje(){
 void ListarViaje(nodo *ListarV) {
     if (ListarV != NULL) {
         ListarViaje(ListarV->izq);
-        cout << "Identificador Unico: " << ListarV->identificador << ", Precio del viaje: " << ListarV->Preciodelviaje << ", Destino: " << ListarV->destino
-             << ", Matricula de la embarcacion: " << ListarV->MatriculaEmbarcacion << ", Nombre de la embarcacion: " << ListarV->NombreEmbarcacion
-             << ", Fecha del viaje: " << ListarV->dia << "/" << ListarV->mes << "/" << ListarV->year << ", Capacidad de la Embarcacion: " << ListarV->CapacidadEmbarcacion << "\n";
+        cout<<"\n\t...LISTANDO VIAJES..."<<endl;
+        cout << "\nIdentificador Unico: " << ListarV->identificador << "\nPrecio del viaje: " << ListarV->Preciodelviaje << " \nDestino: " << ListarV->destino
+             << "\nMatricula de la embarcacion: " << ListarV->MatriculaEmbarcacion << "\nNombre de la embarcacion: " << ListarV->NombreEmbarcacion
+             << "\nFecha del viaje: " << ListarV->dia << "/" << ListarV->mes << "/" << ListarV->year << " Capacidad de la Embarcacion: " << ListarV->CapacidadEmbarcacion << "\n";
         ListarViaje(ListarV->der);
     }
 }
