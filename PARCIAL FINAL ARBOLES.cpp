@@ -1,7 +1,7 @@
 #include <iostream>
 #include <malloc.h> // Para usar malloc y free
 #include <conio.h>
-#include <cstring>
+#include <cstring>//manipulación de cadenas de caracteres
 
 using namespace std;
 
@@ -42,7 +42,7 @@ int mayor(int a, int b) {
 nodo* crearNodo(double precio, const char* destino, const char* matricula, const char* nombre, int dia, int mes, int year, int capacidad) {
     nodo* nuevoNodo = (struct nodo*) malloc(sizeof(struct nodo));
     nuevoNodo->Preciodelviaje = precio;
-    strcpy(nuevoNodo->destino, destino);
+    strcpy(nuevoNodo->destino, destino);//sirve para copiar el contenido de la cadena destino en el campo destino del nodo nuevoNodo.
     strcpy(nuevoNodo->MatriculaEmbarcacion, matricula);
     strcpy(nuevoNodo->NombreEmbarcacion, nombre);
     nuevoNodo->dia = dia;
@@ -55,7 +55,18 @@ nodo* crearNodo(double precio, const char* destino, const char* matricula, const
     nuevoNodo->primerPasajero = NULL;
     nuevoNodo->ultimoPasajero = NULL;
     nuevoNodo->numPasajeros = 0;
-    sprintf(nuevoNodo->identificador, "%.2s%04d%02d%02d", matricula, year, mes, dia);
+    
+    /* "sprintf" Es una función de la biblioteca estándar de C que permite formatear y almacenar una cadena 
+	de caracteres en un buffer. Es similar a printf, pero en lugar de imprimir en la consola, almacena el resultado en una variable.*/
+	
+    sprintf(nuevoNodo->identificador, "%.2s%04d%02d%02d", matricula, year, mes, dia);/* estuve indagando fuertemente una forma en la cual
+    se pudieran asignar los valores: 2primeros caracteres de la matricula y la fecha del viaje(dia, mes, year) a la variable identificador unico 
+    y descubri esta funcion que lo que hace es: 
+    
+    Una la cadena de formato que especifica cómo se deben formatear y combinar los diferentes valores.
+	*/
+	
+	//posdata: comparti la funcion de sprintf con algunos compañeros cercacnos que aun no sabian como asignar los valores al indenticador unico. att: Manuel Vera
     return nuevoNodo;
 }
 
@@ -185,15 +196,48 @@ void RegistrarViaje() {
 }
 
 
-void BuscarViaje(){
+//NODO para buscar los viajes
+nodo* buscar(nodo* busqueda, const char* identificador) {
+    if (busqueda == NULL || strcmp(busqueda->identificador, identificador) == 0)
+        return busqueda;
+
+    if (strcmp(identificador, busqueda->identificador) < 0)
+        return buscar(busqueda->izq, identificador);
+
+    return buscar(busqueda->der, identificador);
+}
+
+//FUNCIÓN para bucar viajes a traves del identificador único
+void BuscarViaje(){	
 	
-	
+    char identificadorU[50];
+    cout << "\nDigite el identificador unico del viaje que desea buscar: ";
+    cin >> identificadorU;
+
+    nodo* viaje = buscar(raiz, identificadorU);
+    if (viaje != NULL) {
+        cout << "\nViaje encontrado:\n";
+        cout << "Identificador: " << viaje->identificador << endl;
+        cout << "Precio: " << viaje->Preciodelviaje << endl;
+        cout << "Destino: " << viaje->destino << endl;
+        cout << "Matricula: " << viaje->MatriculaEmbarcacion << endl;
+        cout << "Nombre: " << viaje->NombreEmbarcacion << endl;
+        cout << "Fecha: " << viaje->dia << "/" << viaje->mes << "/" << viaje->year << endl;
+        cout << "Capacidad: " << viaje->CapacidadEmbarcacion << endl;
+    } else {
+        cout << "\nViaje no encontrado.\n";
+    }	
 
 }
 
-void ListarViaje(){
-	
-	
+void ListarViaje(nodo *ListarV) {
+    if (ListarV != NULL) {
+        ListarViaje(ListarV->izq);
+        cout << "Identificador Unico: " << ListarV->identificador << ", Precio del viaje: " << ListarV->Preciodelviaje << ", Destino: " << ListarV->destino
+             << ", Matricula de la embarcacion: " << ListarV->MatriculaEmbarcacion << ", Nombre de la embarcacion: " << ListarV->NombreEmbarcacion
+             << ", Fecha del viaje: " << ListarV->dia << "/" << ListarV->mes << "/" << ListarV->year << ", Capacidad de la Embarcacion: " << ListarV->CapacidadEmbarcacion << "\n";
+        ListarViaje(ListarV->der);
+    }
 }
 
 void EliminarViaje(){
@@ -242,7 +286,7 @@ int main() {
                 break;
 
             case 3:
-                ListarViaje();
+                ListarViaje(raiz);
                 break;
 
             case 4:
