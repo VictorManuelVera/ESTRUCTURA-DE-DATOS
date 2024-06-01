@@ -10,6 +10,8 @@ struct Pasajero {
     Pasajero* siguiente;
 };
 
+  Pasajero* aux, *aux2;
+
 struct nodo {
     char identificador[15]; // Identificador único
     double Preciodelviaje;
@@ -246,19 +248,65 @@ void EliminarViaje(){
 	
 }
 
-void registrarPasajero(){
-	
-	
-
+void registrarPasajero(nodo* RegistrarP, const char* identificador, const char* nombrePasajero) {
+    nodo* viaje = buscar(RegistrarP, identificador);
+    if (viaje != NULL) {
+        if (viaje->numPasajeros < viaje->CapacidadEmbarcacion) {
+            Pasajero* nuevoPasajero = (Pasajero*)malloc(sizeof(Pasajero));
+            strcpy(nuevoPasajero->nombre, nombrePasajero);
+            nuevoPasajero->siguiente = NULL;
+            if (viaje->primerPasajero == NULL) {
+                viaje->primerPasajero = nuevoPasajero;
+                viaje->ultimoPasajero = nuevoPasajero;
+            } else {
+                viaje->ultimoPasajero->siguiente = nuevoPasajero;
+                viaje->ultimoPasajero = nuevoPasajero;
+            }
+            viaje->numPasajeros++;
+            cout << "\nPasajero registrado con éxito.\n";
+        } else {
+            cout << "\nNo hay capacidad disponible en este viaje.\n";
+        }
+    } else {
+        cout << "\nViaje no encontrado.\n";
+    }
 }
 
 
-void listarPasajero(){
-	
-	
+//Mostrar los pasajeros en el orden en el que fueron registrados
+void listarPasajero() {
+    char identificadorU[50];
+    cout << "\nDigite el identificador unico del viaje: ";
+    cin >> identificadorU;
+    
+    nodo* viaje = buscar(raiz, identificadorU);
+    if (viaje == NULL) {
+        cout << "\nViaje no encontrado.\n";
+        return;
+    }
+
+    if (viaje->primerPasajero == NULL) {
+        cout << "\nNo hay pasajeros registrados para este viaje.\n";
+        return;
+    }
+
+    cout << "\nLista de pasajeros del viaje " << viaje->identificador << ":\n";
+    
+    // Apuntador auxiliar para recorrer la lista de pasajeros
+    Pasajero* aux = viaje->primerPasajero;
+    
+    // Usando un bucle for para recorrer la lista
+    for (Pasajero* aux2 = aux; aux2 != NULL; aux2 = aux2->siguiente) {
+        cout << "\nNombre del pasajero" << aux2->nombre << endl;
+		cout << "Identificador Unico del viaje: " << viaje->identificador << endl;
+        cout << "Precio del viaje: " << viaje->Preciodelviaje << endl;
+        cout << "Destino del viaje: " << viaje->destino << endl;
+        cout << "Matricula de la embarcacion: " << viaje->MatriculaEmbarcacion << endl;
+        cout << "Nombre de la embarcacion: " << viaje->NombreEmbarcacion << endl;
+        cout << "Fecha del viaje: " << viaje->dia << "/" << viaje->mes << "/" << viaje->year << endl;
+        cout << "Capacidad del viaje: " << viaje->CapacidadEmbarcacion << endl;
+    }
 }
-
-
 
 
 int main() {
@@ -295,7 +343,16 @@ int main() {
                 break;
 
             case 5:
-                registrarPasajero();
+            	
+				char identificador[50];
+                char nombrePasajero[50];
+
+                cout << "\nDigite el identificador unico del viaje: ";
+                cin >> identificador;
+                cout << "\nDigite el nombre del pasajero: ";
+                cin.ignore();
+                cin.getline(nombrePasajero, 50);
+                registrarPasajero(raiz, identificador, nombrePasajero);
                 break;
 
             case 6:
