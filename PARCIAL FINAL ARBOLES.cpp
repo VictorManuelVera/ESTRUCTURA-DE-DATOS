@@ -243,9 +243,100 @@ void ListarViaje(nodo *ListarV) {
     }
 }
 
-void EliminarViaje(){
-	
-	
+nodo* encontrarMinimo(nodo* raiz) {
+    if (raiz == NULL) {
+        return NULL;
+    }
+
+    if (raiz->izq) {
+        return encontrarMinimo(raiz->izq);
+    } else {
+        return raiz;
+    }
+}
+
+nodo* eliminarNodo(nodo* raiz, const char* identificador) {
+    if (raiz == NULL) {
+        return raiz;
+    }
+
+    if (strcmp(identificador, raiz->identificador) < 0) {
+        raiz->izq = eliminarNodo(raiz->izq, identificador);
+    } else if (strcmp(identificador, raiz->identificador) > 0) {
+        raiz->der = eliminarNodo(raiz->der, identificador);
+    } else {
+        if ((raiz->izq == NULL) || (raiz->der == NULL)) {
+            nodo* temp = raiz->izq ? raiz->izq : raiz->der;
+
+            if (temp == NULL) {
+                temp = raiz;
+                raiz = NULL;
+            } else {
+                *raiz = *temp;
+            }
+            free(temp);
+        } else {
+            nodo* temp = encontrarMinimo(raiz->der);
+            strcpy(raiz->identificador, temp->identificador);
+            raiz->Preciodelviaje = temp->Preciodelviaje;
+            strcpy(raiz->destino, temp->destino);
+            strcpy(raiz->MatriculaEmbarcacion, temp->MatriculaEmbarcacion);
+            strcpy(raiz->NombreEmbarcacion, temp->NombreEmbarcacion);
+            raiz->dia = temp->dia;
+            raiz->mes = temp->mes;
+            raiz->year = temp->year;
+            raiz->CapacidadEmbarcacion = temp->CapacidadEmbarcacion;
+
+            raiz->der = eliminarNodo(raiz->der, temp->identificador);
+        }
+    }
+
+    if (raiz == NULL) {
+        return raiz;
+    }
+
+    raiz->altura = 1 + mayor(obtenerAltura(raiz->izq), obtenerAltura(raiz->der));
+
+    int balance = obtenerBalance(raiz);
+
+    if (balance > 1 && obtenerBalance(raiz->izq) >= 0) {
+        return rotarDerecha(raiz);
+    }
+
+    if (balance > 1 && obtenerBalance(raiz->izq) < 0) {
+        raiz->izq = rotarIzquierda(raiz->izq);
+        return rotarDerecha(raiz);
+    }
+
+    if (balance < -1 && obtenerBalance(raiz->der) <= 0) {
+        return rotarIzquierda(raiz);
+    }
+
+    if (balance < -1 && obtenerBalance(raiz->der) > 0) {
+        raiz->der = rotarDerecha(raiz->der);
+        return rotarIzquierda(raiz);
+    }
+
+    return raiz;
+}
+
+void EliminarViaje() {
+    char identificador[50];
+    cout << "\nDigite el identificador unico del viaje que desea eliminar: ";
+    cin >> identificador;
+
+    nodo* viaje = buscar(raiz, identificador);
+    
+    if (viaje != NULL) {
+    	
+        raiz = eliminarNodo(raiz, identificador);
+        cout << "\n\nViaje eliminado con exito.\n";
+    
+    } else {
+    	
+        cout << "\nEl identificador unico digitado no concuerda con ningún viaje.\n"<<endl;
+    }
+    
 }
 
 void registrarPasajero(nodo* RegistrarP, const char* identificador, const char* nombrePasajero) {
